@@ -1,0 +1,21 @@
+[package]
+name = "rust_postgres_wrapper"
+version = "0.1.0"
+authors = ["Abner Oliveira <abner.oliveira@serpro.gov.br>"]
+edition = "2018"
+
+[lib]
+name = "rust_postgres_wrapper"
+crate-type = ["staticlib", "cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+postgres = "0.19.1"
+
+
+[profile.release]
+opt-level = 'z'  # Optimize for size.
+lto = true
+codegen-units = 1
+panic = 'abort'

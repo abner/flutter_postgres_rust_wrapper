@@ -1,0 +1,3 @@
+
+[defines]
+"target_os = linux" = "TARGET_OS_LINUX"
