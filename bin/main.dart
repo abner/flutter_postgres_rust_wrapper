@@ -18,9 +18,10 @@ void main() {
   // Pointer<Int8> result = fp.hello_rust(arg.cast<Int8>());
   // print(result.cast<Utf8>().toDartString());
 
-  Pointer arg = "Select id, name, age from users;".toNativeUtf8();
+  Pointer argQuery = "Select id, name, age from users;".toNativeUtf8();
+  Pointer connString = "postgres://dart_postgres:dart_postgres@localhost:32780/dart_postgres".toNativeUtf8();
   try {
-    Pointer<Int8> result = fp.rust_run_query(arg.cast<Int8>(), 32780);
+    Pointer<Int8> result = fp.rust_run_query(connString.cast<Int8>(), argQuery.cast<Int8>());
     print(result.cast<Utf8>().toDartString());
   } catch (e) {
     print('ERROR: $e');

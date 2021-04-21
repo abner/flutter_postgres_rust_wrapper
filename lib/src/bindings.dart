@@ -1308,12 +1308,12 @@ class flutter_postgres_rust {
       _hello_rust_ptr.asFunction<_dart_hello_rust>();
 
   ffi.Pointer<ffi.Int8> rust_run_query(
+    ffi.Pointer<ffi.Int8> connection_string,
     ffi.Pointer<ffi.Int8> sql,
-    int port,
   ) {
     return _rust_run_query(
+      connection_string,
       sql,
-      port,
     );
   }
 
@@ -2752,11 +2752,11 @@ typedef _dart_hello_rust = ffi.Pointer<ffi.Int8> Function(
 );
 
 typedef _c_rust_run_query = ffi.Pointer<ffi.Int8> Function(
+  ffi.Pointer<ffi.Int8> connection_string,
   ffi.Pointer<ffi.Int8> sql,
-  ffi.Int32 port,
 );
 
 typedef _dart_rust_run_query = ffi.Pointer<ffi.Int8> Function(
+  ffi.Pointer<ffi.Int8> connection_string,
   ffi.Pointer<ffi.Int8> sql,
-  int port,
 );

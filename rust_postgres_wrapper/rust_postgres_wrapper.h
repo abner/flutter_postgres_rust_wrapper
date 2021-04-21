@@ -5,4 +5,4 @@
 
 char *hello_rust(const char *to);
 
-char *rust_run_query(const char *sql, int32_t port);
+char *rust_run_query(const char *connection_string, const char *sql);
