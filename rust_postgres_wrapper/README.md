@@ -4,6 +4,9 @@
 cbindgen --config cbindgen.toml --lang c --crate rust_postgres_wrapper --output rust_postgres_wrapper.h
 ```
 
+## Reduce Rust binaries size
+
+https://github.com/johnthagen/min-sized-rust
 
 ## Compile and generate cbindings
 
