@@ -1,0 +1,26 @@
+name: flutter_postgres_rust
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  ffi: ^1.0.0
+
+dev_dependencies:
+  ffigen: ^2.4.2
+
+ffigen:
+  name: flutter_postgres_rust
+  description: Bindings for flutter_postrgres using rust
+  llvm-path:
+    - /usr/lib
+    - /usr/lib/llvm-10/lib
+    - /usr/lib/llvm-10/
+  compiler-opts:
+   - '-I/usr/lib/llvm-10/include/'
+   #- '-I/usr/include/c++/7/'
+   #- '-I/usr/include/x86_64-linux-gnu/c++/7/'
+   #- '-std=c++11' #'-std=gnu++11' #-std=c++11 or
+  output: 'lib/src/bindings.dart'
+  headers:
+    entry-points:
+      - '**/rust_postgres_wrapper.h'

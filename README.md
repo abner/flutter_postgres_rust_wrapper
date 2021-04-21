@@ -10,8 +10,14 @@ dart run ffigen
 
 ## Execute passing path of the dynamic library
 
+**Dart Binary**
 ```
 LD_LIBRARY_PATH=$PWD/rust_postgres_wrapper/target/release bin/main.exe
+```
+
+**Flutter on Linux**
+```
+LD_LIBRARY_PATH=$PWD/rust_postgres_wrapper/target/release flutter run -t lib/main.dart
 ```
 
 
