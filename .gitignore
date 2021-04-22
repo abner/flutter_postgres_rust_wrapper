@@ -1,4 +1,4 @@
 bin/main.exe
-.dart_tool
+.dart_tool/
 .packages
 build

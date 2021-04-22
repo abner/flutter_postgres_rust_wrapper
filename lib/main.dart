@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Pointer argQuery =
                       "Select id, name, age from users;".toNativeUtf8();
                   Pointer connString =
-                      "postgres://dart_postgres:dart_postgres@localhost:32780/dart_postgres"
+                      "postgres://dart_postgres:dart_postgres@localhost:56247/dart_postgres"
                           .toNativeUtf8();
                   try {
                     Pointer<Int8> result = fp!.rust_run_query(
