@@ -115,8 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   } else if (Platform.isWindows) {
                     fp = flutter_postgres_rust(
-                      DynamicLibrary.open('librust_postgres_wrapper.dll'),
+                      DynamicLibrary.open('rust_postgres_wrapper.dll'),
                     );
+                    // fp = flutter_postgres_rust(DynamicLibrary.open(
+                    //'${Platform.environment['LD_LIBRARY_PATH']}/rust_postgres_wrapper.dll'));
                   } else {
                     throw 'Plataform not yet supported';
                   }
@@ -127,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Pointer argQuery =
                       "Select id, name, age from users;".toNativeUtf8();
                   Pointer connString =
-                      "postgres://dart_postgres:dart_postgres@localhost:32780/dart_postgres"
+                      "postgres://dart_postgres:dart_postgres@localhost:56247/dart_postgres"
                           .toNativeUtf8();
                   try {
                     Pointer<Int8> result = fp.rust_run_query(
