@@ -29,7 +29,8 @@ android {
     compileSdkVersion 30
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += 'src/main/kotlin'    
+        main.jniLibs.srcDirs = ['src/main/jniLibs']
     }
 
     defaultConfig {

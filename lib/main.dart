@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  flutter_postgres_rust? fp;
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -106,31 +107,32 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
                 onPressed: () {
-                  late flutter_postgres_rust fp;
-
-                  if (Platform.isLinux) {
-                    //fp = flutter_postgres_rust(DynamicLibrary.open('${Platform.environment['PWD']}/rust_postgres_wrapper/target/release/librust_postgres_wrapper.so'));
-                    fp = flutter_postgres_rust(
-                      DynamicLibrary.open('librust_postgres_wrapper.so'),
-                    );
-                  } else if (Platform.isWindows) {
-                    fp = flutter_postgres_rust(
-                      DynamicLibrary.open('librust_postgres_wrapper.dll'),
-                    );
-                  } else {
-                    throw 'Plataform not yet supported';
+                  if (fp == null) {
+                    if (Platform.isLinux) {
+                      //fp = flutter_postgres_rust(DynamicLibrary.open('${Platform.environment['PWD']}/rust_postgres_wrapper/target/release/librust_postgres_wrapper.so'));
+                      fp = flutter_postgres_rust(
+                          DynamicLibrary.open('librust_postgres_wrapper.so'));
+                    } else if (Platform.isWindows) {
+                      fp = flutter_postgres_rust(
+                          DynamicLibrary.open('librust_postgres_wrapper.dll'));
+                    } else if (Platform.isAndroid) {
+                      fp = flutter_postgres_rust(
+                          DynamicLibrary.open('librust_postgres_wrapper.so'));
+                    } else {
+                      throw 'Plataform not yet supported';
+                    }
                   }
                   // Pointer arg = "Olá galera - vem retorno do Rust".toNativeUtf8();
                   // Pointer<Int8> result = fp.hello_rust(arg.cast<Int8>());
                   // print(result.cast<Utf8>().toDartString());
-
+                  if (fp == null) return;
                   Pointer argQuery =
                       "Select id, name, age from users;".toNativeUtf8();
                   Pointer connString =
                       "postgres://dart_postgres:dart_postgres@localhost:32780/dart_postgres"
                           .toNativeUtf8();
                   try {
-                    Pointer<Int8> result = fp.rust_run_query(
+                    Pointer<Int8> result = fp!.rust_run_query(
                         connString.cast<Int8>(), argQuery.cast<Int8>());
                     print(result.cast<Utf8>().toDartString());
                   } catch (e) {

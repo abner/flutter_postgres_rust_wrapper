@@ -54,7 +54,8 @@ target/universal/release/libexample.a: $(SOURCES) ndk-home
 
 ## android: Compile the android targets (arm64, armv7 and i686)
 #android: target/aarch64-linux-android/release/libexample.so target/armv7-linux-androideabi/release/libexample.so target/i686-linux-android/release/libexample.so target/x86_64-linux-android/release/libexample.so
-android: target/armv7-linux-androideabi/release/libexample.so
+#android: target/armv7-linux-androideabi/release/libexample.so
+android: target/aarch64-linux-android/release/libexample.so
 
 target/aarch64-linux-android/release/libexample.so: $(SOURCES) ndk-home
 	CC_aarch64_linux_android=$(ANDROID_AARCH64_LINKER) \
